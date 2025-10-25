@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Automatic Number Plate Recognition</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>🚘 Automatic Number Plate Recognition</h1>
+      <p>Smart Detection • Fast Results • Modern UI</p>
+    </header>
+
+    <main>
+      <!-- Upload Image Section -->
+      <section class="card upload-card">
+        <h2>📁 Upload Vehicle Image</h2>
+        <div class="upload-box">
+          <input type="file" id="fileInput" accept="image/*" onchange="previewImage()" />
+          <label for="fileInput" class="upload-label">Choose File</label>
+          <button class="btn detect-btn" onclick="uploadImage()">🔍 Detect Plate</button>
+        </div>
+        <div class="preview-container">
+          <img id="preview" src="" alt="Image Preview" />
+        </div>
+      </section>
+
+      <!-- Live Camera Section -->
+      <section class="card camera-card">
+        <h2>🎥 Live Camera Detection</h2>
+        <div class="camera-container">
+          <video id="webcam" autoplay playsinline></video>
+          <div class="camera-overlay" id="cameraOverlay">Camera Off</div>
+        </div>
+        <div class="camera-controls">
+          <button class="btn" id="startCamera" onclick="initializeWebcam()">📷 Start Camera</button>
+          <button class="btn" id="captureBtn" onclick="captureFromWebcam()" disabled>📸 Capture & Detect</button>
+          <button class="btn stop-btn" id="stopCamera" onclick="stopWebcam()" disabled>⏹️ Stop Camera</button>
+        </div>
+      </section>
+
+      <!-- Result Section -->
+      <section class="card result-card">
+        <h2>✅ Detected Number Plate:</h2>
+        <div class="result-display">
+          <p id="plateNumber">Waiting for detection...</p>
+          <div class="result-details" id="resultDetails" style="display: none;">
+            <p><strong>Confidence:</strong> <span id="confidence">-</span></p>
+            <p><strong>Processing Time:</strong> <span id="processingTime">-</span>ms</p>
+          </div>
+        </div>
+        <div class="result-actions">
+          <button class="btn secondary-btn" onclick="downloadResult()" id="downloadBtn" disabled>📥 Download Result</button>
+          <button class="btn secondary-btn" onclick="clearAll()">🗑️ Clear All</button>
+        </div>
+      </section>
+
+      <!-- History Section -->
+      <section class="card history-card">
+        <h2>📊 Detection History</h2>
+        <div class="history-list" id="historyList">
+          <p class="no-history">No detection history yet</p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Developed by <strong>Ravi Shankar Kumar</strong> | Powered by TensorFlow & OpenCV</p>
+    </footer>
+  </div>
+
+  <!-- Notification Container -->
+  <div id="notificationContainer"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
